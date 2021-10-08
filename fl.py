@@ -126,7 +126,7 @@ if __name__ == '__main__':
     global_model = get_model(args)
     bst_acc = -1
     description = "inference acc={:.4f}% loss={:.2f}, best_acc = {:.2f}%"
-    local_weights = []
+    
     global_model.train()
     cls_num_list = get_cls_num_list(traindata_cls_counts)
     print(cls_num_list)
@@ -136,6 +136,7 @@ if __name__ == '__main__':
 
     # ===============================================
     for com in tqdm(range(args.epoch)):
+        local_weights = []
         for idx in idxs_users:
             local_model = LocalUpdate(args=args, dataset=train_dataset,
                                       idxs=user_groups[idx])
